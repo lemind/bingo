@@ -4,7 +4,6 @@ module.exports = {
     "es2021": true
   },
   "extends": [
-    "airbnb",
     "airbnb-typescript",
     "plugin:import/recommended",
     "plugin:import/typescript"
@@ -29,6 +28,7 @@ module.exports = {
     "import/no-named-as-default": "off",
     "@typescript-eslint/object-curly-spacing": "off",
     "@typescript-eslint/indent": "off",
+    "import/default": "off", //todo
   },
   "settings": {
     "react": {
