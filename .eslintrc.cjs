@@ -3,6 +3,12 @@ module.exports = {
     "browser": true,
     "es2021": true
   },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -13,6 +19,17 @@ module.exports = {
     "react",
     "@typescript-eslint",
   ],
+  "rules": {
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/quotes": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "no-console": "off",
+    "import/no-unresolved": "error",
+    "@typescript-eslint/no-unused-vars": 1,
+    "import/no-named-as-default": "off",
+    "@typescript-eslint/object-curly-spacing": "off",
+    "@typescript-eslint/indent": "off",
+  },
   "settings": {
     "react": {
       "version": "detect"

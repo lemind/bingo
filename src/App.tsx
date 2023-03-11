@@ -1,14 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import { BingoGrid } from './components/BingoGrid'
+import { bingoData } from '@/bingoData'
 
 function App() {
+
+
   return (
     <div className="App">
       <h1>Bingo</h1>
-      <p className="bg-red-600">
-        more soon
-      </p>
+      <BingoGrid data={bingoData} />
     </div>
   )
 }
