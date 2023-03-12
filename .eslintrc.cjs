@@ -29,6 +29,7 @@ module.exports = {
     "@typescript-eslint/object-curly-spacing": "off",
     "@typescript-eslint/indent": "off",
     "import/default": "off", //todo
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}]
   },
   "settings": {
     "react": {

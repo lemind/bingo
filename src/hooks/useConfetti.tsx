@@ -1,5 +1,5 @@
 import React from "react"
-import confetti from "canvas-confetti"
+import {create} from "canvas-confetti"
 
 type Props = {
   ref: React.RefObject<HTMLCanvasElement>
@@ -8,7 +8,7 @@ type Props = {
 export const useConfetti = ({ref}: Props) => {
   if (!ref.current) return {shoot: () => {}}
 
-  var myConfetti = confetti.create(ref.current, {
+  var myConfetti = create(ref.current, {
     resize: true,
     useWorker: true
   })
