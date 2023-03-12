@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import {twMerge} from "tailwind-merge"
 import {GridCell, GridItems, GridPureData} from "@/models/grid"
 import {
@@ -6,10 +6,10 @@ import {
   getComplexKey,
   getGridColsClassName,
   getInitGridState,
-  getMatrixMiddle,
-  gridColsClassName
+  getMatrixMiddle
 } from "@/helper"
 import {BingoCell} from "@/components/BingoCell"
+import {useConfetti} from "@/hooks/useConfetti"
 
 type Props = {
   size: number
@@ -17,6 +17,9 @@ type Props = {
 }
 
 export const BingoGrid: React.FC<Props> = ({size, data}) => {
+  const confettiElement = useRef<HTMLCanvasElement>(null)
+  const {shoot} = useConfetti({ref: confettiElement})
+
   const [dataMatrix, setDataMatrix] = useState<GridItems>([])
 
   const [selectedState, setSelectedState] = useState(getInitGridState(size))
@@ -27,6 +30,7 @@ export const BingoGrid: React.FC<Props> = ({size, data}) => {
 
   useEffect(() => {
     console.log("check if we have BINGO!!")
+    shoot()
   }, [selectedState])
 
   const cellClickHandle = (cellData: GridCell) => {
@@ -56,6 +60,10 @@ export const BingoGrid: React.FC<Props> = ({size, data}) => {
           ))
         })}
       </div>
+      <canvas
+        className="width-screen absolute top-0 left-0 z-minus-1 h-screen"
+        ref={confettiElement}
+      />
     </>
   )
 }
