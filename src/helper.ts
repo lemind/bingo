@@ -5,6 +5,10 @@ export const getMatrixMiddle = (size: number) => {
   return Math.floor(size / 2 + 1) - 1
 }
 export const getComplexKey = (x: number, y: number) => `${x}_${y}`
+export const parseComplexKey = (str: string): number[] => {
+  const resString = str.split("_")
+  return resString.map((r) => Number(r))
+}
 
 export const dataToMartix = (data: GridPureData, size: number) => {
   const res: GridItems = []
@@ -25,8 +29,9 @@ export const dataToMartix = (data: GridPureData, size: number) => {
   return res
 }
 
+type BingoState = Record<string, boolean>
 export const getInitGridState = (size: number) => {
-  const res: Record<string, boolean> = {}
+  const res: BingoState = {}
 
   const middle = getMatrixMiddle(size)
 
@@ -49,3 +54,42 @@ const COLS_CLASS_NAMES: Record<number, string> = {
 }
 export const getGridColsClassName = (colsNumner: number) =>
   COLS_CLASS_NAMES[colsNumner]
+
+export const checkBingo = (state: BingoState) => {
+  let isBingo = false
+  const size = Math.sqrt(Object.keys(state).length)
+  const bingoMap = new Map()
+
+  const updateBingo = (key: string) => {
+    const curr = bingoMap.get(key)
+    if (!curr) {
+      bingoMap.set(key, 1)
+    } else {
+      const newValue = curr + 1
+      bingoMap.set(key, newValue)
+      if (newValue === size) {
+        isBingo = true
+      }
+    }
+  }
+
+  Object.keys(state).forEach((key) => {
+    if (state[key]) {
+      const keyXY = parseComplexKey(key)
+      const x = keyXY[0]
+      const y = keyXY[1]
+
+      if (x === y) {
+        updateBingo("leftDiagonal")
+      }
+      if (x + y === size - 1) {
+        updateBingo("rightDiagonal")
+      }
+
+      updateBingo(`x${x}`)
+      updateBingo(`y${y}`)
+    }
+  })
+
+  return isBingo
+}

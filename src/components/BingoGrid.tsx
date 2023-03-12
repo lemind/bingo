@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from "react"
 import {twMerge} from "tailwind-merge"
 import {GridCell, GridItems, GridPureData} from "@/models/grid"
 import {
+  checkBingo,
   dataToMartix,
   getComplexKey,
   getGridColsClassName,
@@ -29,8 +30,11 @@ export const BingoGrid: React.FC<Props> = ({size, data}) => {
   }, [])
 
   useEffect(() => {
-    console.log("check if we have BINGO!!")
-    shoot()
+    const ifBingo = checkBingo(selectedState)
+
+    if (ifBingo) {
+      shoot()
+    }
   }, [selectedState])
 
   const cellClickHandle = (cellData: GridCell) => {
@@ -61,7 +65,7 @@ export const BingoGrid: React.FC<Props> = ({size, data}) => {
         })}
       </div>
       <canvas
-        className="width-screen absolute top-0 left-0 z-minus-1 h-screen"
+        className="absolute top-0 left-0 z-minus-1 h-screen w-screen"
         ref={confettiElement}
       />
     </>
