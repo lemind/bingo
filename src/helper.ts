@@ -42,3 +42,10 @@ export const getInitGridState = (size: number) => {
 
   return res
 }
+
+const COLS_CLASS_NAMES: Record<number, string> = {
+  // ...
+  5: "grid-cols-5"
+}
+export const getGridColsClassName = (colsNumner: number) =>
+  COLS_CLASS_NAMES[colsNumner]

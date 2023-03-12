@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from "react"
+import {twMerge} from "tailwind-merge"
 import {GridCell, GridItems, GridPureData} from "@/models/grid"
 import {
   dataToMartix,
   getComplexKey,
+  getGridColsClassName,
   getInitGridState,
-  getMatrixMiddle
+  getMatrixMiddle,
+  gridColsClassName
 } from "@/helper"
 import {BingoCell} from "@/components/BingoCell"
 
@@ -42,7 +45,7 @@ export const BingoGrid: React.FC<Props> = ({size, data}) => {
 
   return (
     <>
-      <div className="mt-16 grid grid-cols-5 gap-4">
+      <div className={twMerge("mt-16 grid gap-4", getGridColsClassName(size))}>
         {dataMatrix.map((row) => {
           return row.map((cell) => (
             <BingoCell
