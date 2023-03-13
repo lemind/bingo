@@ -53,7 +53,12 @@ export const BingoGrid: React.FC<Props> = ({size, data}) => {
 
   return (
     <>
-      <div className={twMerge("mt-16 grid gap-4", getGridColsClassName(size))}>
+      <div
+        className={twMerge(
+          "mt-16 grid gap-2 md:gap-4",
+          getGridColsClassName(size)
+        )}
+      >
         {dataMatrix.map((row) => {
           return row.map((cell) => (
             <BingoCell

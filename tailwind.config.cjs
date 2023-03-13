@@ -7,7 +7,16 @@ module.exports = {
     extend: {
       zIndex: {
         'minus-1': '-1',
-      }
+      },
+      fontSize: {
+        'xxs': ['10px', '14px'],
+      },
+      height: {
+        '18': '72px',
+      },
+      width: {
+        '18': '72px',
+      },
     }
   }
 }
