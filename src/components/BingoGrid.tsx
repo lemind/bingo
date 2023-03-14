@@ -27,7 +27,8 @@ export const BingoGrid: React.FC<Props> = ({size, data}) => {
 
   useEffect(() => {
     setDataMatrix(dataToMartix(data, size))
-  }, [])
+    setSelectedState(getInitGridState(size))
+  }, [data])
 
   useEffect(() => {
     const ifBingo = checkBingo(selectedState)

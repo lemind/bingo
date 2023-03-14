@@ -4,7 +4,7 @@ export const bingoData = [
   "I need to jump to another call",
   "Can everyone go on mute",
   "Could you please get closet to the mic",
-  "(loca painful echo/ feeback)",
+  "(load painful echo/ feeback)",
   "Next slide, please",
   "Can we take this offline",
   "Is___on the cell?",
