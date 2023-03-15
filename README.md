@@ -2,7 +2,6 @@
 
 ## live - https://bingo.herokuapp.com/
 
-### Repository - https://github.com/lemind/bingo
 <br/>
 
 ### How to run locally
