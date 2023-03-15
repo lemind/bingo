@@ -15,9 +15,10 @@ import {useConfetti} from "@/hooks/useConfetti"
 type Props = {
   size: number
   data: GridPureData
+  onBinfoChanged: (b: boolean) => void
 }
 
-export const BingoGrid: React.FC<Props> = ({size, data}) => {
+export const BingoGrid: React.FC<Props> = ({size, data, onBinfoChanged}) => {
   const confettiElement = useRef<HTMLCanvasElement>(null)
   const {shoot} = useConfetti({ref: confettiElement})
 
@@ -36,6 +37,7 @@ export const BingoGrid: React.FC<Props> = ({size, data}) => {
     if (ifBingo) {
       shoot()
     }
+    onBinfoChanged(ifBingo)
   }, [selectedState])
 
   const cellClickHandle = (cellData: GridCell) => {
@@ -56,13 +58,14 @@ export const BingoGrid: React.FC<Props> = ({size, data}) => {
     <>
       <div
         className={twMerge(
-          "mt-16 grid gap-2 md:gap-4",
+          "mt-10 grid gap-2 md:gap-4",
           getGridColsClassName(size)
         )}
       >
         {dataMatrix.map((row) => {
           return row.map((cell) => (
             <BingoCell
+              key={getComplexKey(cell.x, cell.y)}
               onClick={cellClickHandle}
               data={cell}
               selected={selectedState[`${cell.x}_${cell.y}`]}

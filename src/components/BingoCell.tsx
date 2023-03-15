@@ -12,6 +12,7 @@ export const BingoCell: React.FC<Props> = ({onClick, data, selected}) => {
   return (
     <>
       <div
+        data-testid="bingoCell"
         onClick={() => onClick(data)}
         className={twMerge(
           "md:!text-md flex h-20 w-16 cursor-pointer items-center justify-center border border-black p-2 !text-xxs min-[460px]:w-20 sm:h-24 sm:w-24 sm:!text-sm md:h-28 md:w-28",

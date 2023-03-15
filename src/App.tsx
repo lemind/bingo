@@ -9,6 +9,7 @@ const BINGO_LABEL = "BINGO"
 
 function App() {
   const [data, setData] = useState(bingoData)
+  const [isBingo, setIsBingo] = useState(false)
 
   const shuffleDataHandle = () => {
     const bingoIndex = Math.floor(data.length / 2)
@@ -34,7 +35,10 @@ function App() {
         Shuffle
       </button>
 
-      <BingoGrid data={data} size={BINGO_SIZE} />
+      <h3 className="mt-4" data-testid="bingoStateLabel">
+        {isBingo ? "Bingoo!!" : "Good luck"}
+      </h3>
+      <BingoGrid data={data} size={BINGO_SIZE} onBinfoChanged={setIsBingo} />
     </div>
   )
 }
