@@ -1,6 +1,6 @@
 # Bingo
 
-## live - https://bingo.herokuapp.com/
+## live - https://add-aws.d2ecdy5xcchkf6.amplifyapp.com/
 
 <br/>
 

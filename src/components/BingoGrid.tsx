@@ -15,14 +15,15 @@ import {useConfetti} from "@/hooks/useConfetti"
 type Props = {
   size: number
   data: GridPureData
-  onBinfoChanged: (b: boolean) => void
+  onBingoChanged: (b: number) => void
 }
 
-export const BingoGrid: React.FC<Props> = ({size, data, onBinfoChanged}) => {
+export const BingoGrid: React.FC<Props> = ({size, data, onBingoChanged}) => {
   const confettiElement = useRef<HTMLCanvasElement>(null)
   const {shoot} = useConfetti({ref: confettiElement})
 
   const [dataMatrix, setDataMatrix] = useState<GridItems>([])
+  const [bingoTimes, setBingoTimes] = useState(0)
 
   const [selectedState, setSelectedState] = useState(getInitGridState(size))
 
@@ -32,12 +33,15 @@ export const BingoGrid: React.FC<Props> = ({size, data, onBinfoChanged}) => {
   }, [data])
 
   useEffect(() => {
-    const ifBingo = checkBingo(selectedState)
+    const bingoNumber = checkBingo(selectedState)
 
-    if (ifBingo) {
+    onBingoChanged(bingoNumber)
+
+    if (bingoNumber > bingoTimes) {
       shoot()
     }
-    onBinfoChanged(ifBingo)
+
+    setBingoTimes(bingoNumber)
   }, [selectedState])
 
   const cellClickHandle = (cellData: GridCell) => {

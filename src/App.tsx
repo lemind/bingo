@@ -9,7 +9,8 @@ const BINGO_LABEL = "BINGO"
 
 function App() {
   const [data, setData] = useState(bingoData)
-  const [isBingo, setIsBingo] = useState(false)
+  // show label only when new bingo like the shoot?
+  const [bingoTimes, setBingoTimes] = useState(0)
 
   const shuffleDataHandle = () => {
     const bingoIndex = Math.floor(data.length / 2)
@@ -36,9 +37,9 @@ function App() {
       </button>
 
       <h3 className="mt-4" data-testid="bingoStateLabel">
-        {isBingo ? "Bingoo!!" : "Good luck"}
+        {bingoTimes > 0 ? "Bingoo!!" : "Good luck"}
       </h3>
-      <BingoGrid data={data} size={BINGO_SIZE} onBinfoChanged={setIsBingo} />
+      <BingoGrid data={data} size={BINGO_SIZE} onBingoChanged={setBingoTimes} />
     </div>
   )
 }

@@ -10,7 +10,6 @@
     "preview": "vite preview",
     "prepare": "husky install",
     "postinstall": "npm run build:prod",
-    "serve-heroku": "npm run vite --host 0.0.0.0 --port $PORT preview",
     "test": "vitest run",
     "test:watch": "vitest"
   },
