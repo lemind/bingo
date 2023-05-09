@@ -56,7 +56,7 @@ export const getGridColsClassName = (colsNumner: number) =>
   COLS_CLASS_NAMES[colsNumner]
 
 export const checkBingo = (state: BingoState) => {
-  let isBingo = false
+  let bingoNumber = 0
   const size = Math.sqrt(Object.keys(state).length)
   const bingoMap = new Map()
 
@@ -68,7 +68,7 @@ export const checkBingo = (state: BingoState) => {
       const newValue = curr + 1
       bingoMap.set(key, newValue)
       if (newValue === size) {
-        isBingo = true
+        bingoNumber = bingoNumber + 1
       }
     }
   }
@@ -91,7 +91,7 @@ export const checkBingo = (state: BingoState) => {
     }
   })
 
-  return isBingo
+  return bingoNumber
 }
 
 // from stackoverflow
